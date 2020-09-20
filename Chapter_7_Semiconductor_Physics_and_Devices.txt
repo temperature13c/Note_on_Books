@@ -1,0 +1,116 @@
+------------------------------------------
+--										--
+--   Semiconductor Physics and Devices  --
+--										--
+------------------------------------------
+
+#Chapter 7: The pn Junction
+
+Checkpoint:
+
+*	Q:	Describe why and how the space charge region is formed.
+
+	A:	P region has high density of holes and low density of electrons. N region inverted.
+		The density gradient causes the diffusion current flow.
+		Near the metallurgical junction, holes move from P region to N region, electrons move from N region to P region.
+		While holes and electrons are moving, lefting the unmovable particles in the origin position.
+		The area in P region near the metallurgical junction are negative-charged while the area in N region near metallurgical junction are positive-charged.
+		This forms a electric field in a direction from N to P.
+		The electric field apply force on the holes/electrons in a direction opposite to the diffussion current.
+		In equilibrium state without external force, electric field force and diffusion current are balanced, forming a space charge region near the metallurgical junction.
+		
+*	E:	How is the density in the space charge region?
+	
+	A:	Note that the peak electric field in the space charge region is quite large. However, there is no mobile charge in this region.
+		Hence there is no drift current! The diffussion current occurs at the beginning until the equilibrium state is achieved.
+		
+*	E:	How is the relationship between doping concentration and space charge region width?
+	
+	A:	reciprocal, this means for lower doping concentration witdh shall increase.
+	
+*	E:	How is the relationship between doping concentration and elctric field?
+
+	A:	smaller doping concentration means smaller electric field.
+
+*	Q:	Draw the energy-band diagram of a zero-biased and reverse-biased pn junction.
+
+	A:	In zero-biased pn junction, Fermi-level must be kept in the same level for both P & N region.
+		In P region, Fermi-level shall be relatively close to valance band and far from conduction band
+		In N region, situation is inverted.
+		Therefore, the conduction band and valance band bend down from P region to N region.
+		In reverse-biased pn junction, an addition electric field are added to the built-in barrier.
+		This means the band shall bend more.
+		
+*	Q:	Define and derive the expression of the built-in potential barrier voltage
+
+	A:	Calc n0 = Nc*exp(-(Ec - EF)/kT) = ni*exp((EF-EFi)kT) in N region
+		Calc p0 = Nv*exp(-(EF - Ev)/kT) = ni*exp((EFi-EF)kT) in P region
+		Note EFi in N region is different with EFi in P region, the difference between is so-called built-in barrier.
+		replace n0 with Nd (Given Density of doner impurity atoms) in N region.
+		repalce p0 with Na (Given Density of acceptor impurity atoms) in P region.
+		Built-in barrier Vbi = |EF-EFi| in N region + |EFi-EF| in P region.
+		Vbi = kT/e * ln(Na*Nd/ni^2).
+		realated to temperature, impurity density
+		
+*	Q:	Derive the expression for the electric field in space charge region of the pn junction.
+
+	A:	Boundary condition 1：abrupt switch in P/N region and space charge region.
+		Boundary condition 2：abrupt switch in metallurgical junction of space charge region.
+		Boundary condition 3：uniform doping.
+		Applying poisson's equation: the deriviate of electric field to position is constant (volume charge density / permittivity).
+		In P region space charge region, volume charge density is negative since negative particles are lefting
+		In N region space chareg region, polarity is inverted.
+		Electric field is then a straight line with a negative slope in P region, positive slope in N region.
+		In the metallurgical junction, Na*xp = Nd*xn.
+		Note that the elctric field is no larger than 0 in space charge region.
+		Due to the elctric field, hole are more likely in top of valance band in P region and electrons are more likely in bottom of conduction band in N region to keep the lowest energy state.
+		
+*	Q:	Describe what happens to the parameters of the space charge region when a reverse-biased voltage is applied.
+
+	A:	The equation for Vbi is unchanged, but the Vtotal is increased by a reverse-biased voltage VR.
+		The Vtotal originate on positive charges and terminates on negative charges (from N to P).
+		This means the number of positive/negative charges increase. Given a impurity density, width must be widen.
+		Following sayings are wrong:
+		"The E-function moves upwards. Since boundary condition 1, the space charge region is relatively narrower."
+		Note that the forming of a reverse-biased voltage is also caused by the aggregation of charged particles.
+		Note that Vtotal can replace Vbi in the previous calculation.
+		Note that the slop of E-function is unchanged.
+		
+*	Q:	Define and explain the junction capacitance.
+
+	A:	C = delta Q / delta VR = permittivity / width
+		This describe the capacitance during the change of reverse-biased voltage, so-called depletion layer capacitance.
+		The unmovable positive/negative particles forms the junction capacitance, just like a parallel plate capacitor.
+		
+*	E:	Why is the capacitance not defined as Q/R?
+
+	A:	Because this structure is different from the planar capacitance which as charges gathering in 2 plate.
+		it is better to describe capacitance as the ratio of delta Q / delta R.
+		Besides, this C has a differnt unit as F/cm^2 since Q refers to a charge density instead of charge
+	
+*	Q:	Describe the characteristrics and properties of a one-sidedd pn junction
+
+	A:	One side has normal doping concentration while the other side has a very low doping concentration.
+		According to the equation: Na*xp = Nd*xn, for Nd is infi small, xn is infi large
+		The space charge region in N region is over the entire N region. => not accurate! the space charge region extended largely to N region
+		W = xp + xn is quasi xn
+		Nd is infi small, so Na+Nd is quasi Na.
+	
+*	Q:	Describe the avalanche breakdown mechanism in a reverse-biased pn junction
+
+	A:	Although there is almost no moving charges in the space charge region, when it gained enough energy, it is able to ionize the other electron-hole pairs by coliding. If the colided ionized charged pairs also gain enoght energy, more pairs will be ionized.
+	
+*	Q:	Describe how a linearly graded junction is formed.
+
+	A:	Doping a uniformly doped n-type seminconductor with acceptor from the surface => which surface?
+	
+*	Q:	Describe a hyperabrupt junction
+	
+	A:	The doping concentration is higher near the metallurgical junction and decrease as the position is far grom the junction.
+	
+
+Review questions:
+
+1.	Q:	Define the built-in potential voltage and describe how it maintains thermal equilibrium.
+
+	A:	
