@@ -1,0 +1,104 @@
+------------------------------------------
+--										--
+--   Semiconductor Physics and Devices  --
+--										--
+------------------------------------------
+
+#Chapter 8: The pn Junction Diode
+
+scratch:
+
+remind the excess minority carrier in chapter 6
+
+8.34 why there is no recombination of minority carriers in the short region
+
+Checkpoint:
+	
+*	Q:	Describe the mechanism of charge flow across the space charge region of a pn junction when a forward-bias voltage is applied.
+
+	A:	The barrier holded the holes back in p region and electrons back in n region.
+		After applying forward-bias voltage, the total potential barrier is lowered.
+		The Fermi Energy level in p region is lowered than that in n region. => TBD: how to comprehen this?
+		More holes from p region and electrons from n region are ionized and cross through space charge region.
+		These charges become the excess minority carrier in the other side and form a diffusion current.
+	
+*	Q:	State the boundary conditions for the minority carrier concentrations at the edge of the space charge region.
+	
+	A:	starting from Vbi = Vt * ln (Na * Nd / ni^2).
+		Given npo = ni^2 / nn0.
+		Assuming nno quasi = Nd.
+		minority electrons/holes in p/n region are related to majority electrons/holes in n/p region :  np0 = nn0 * e^ (-Vbi / Vt) in thermal equilibrium.
+		Replacing Vbi by (Vbi - Va).
+		A function of minority electrons/holes in p/n region on account of the minority electrons/holes in thermal equilibrium and Va.
+		np = np0 * exp(Va/Vt) and pn = pn0 * exp(Va/Vt) are the boundary conditions of minority carrier concentration at the edge.
+	
+*	Q:	Derive the expressions for the steady-state minority carrier concentrations in the pn junction.
+	
+	A:	Follows the ambipolar transport mentioned in chapter 6.
+		electric field is almost zero in n/p bulk.
+		generation rate is also zero in bulk.
+		steady-state means that delta pn / delta t = 0 and delta np / delta t = 0
+		Boundary condition as mentioned above.
+		Assuming in end of n/p bulk, delta pn or delta np reduce to 0.
+		Then both excess minority carrier concentration decay exponentially with distance away from junction.
+	
+*	Q:	Derive the ideal current–voltage relationship for a pn junction diode.
+		
+	A:	Assuming the current is a continuous function, it shall be diffusion hole current at xn + diffusion electron current at -xp
+	
+*	Q:	Describe the characteristics of a “short” diode.
+
+	A:	A short diode means the boundary condition of delta pn or delta np are not 0 at end of n/p bulk.
+		Note the saying in 8.30
+		Assuming Wn where the excess carrier concentration reduce to 0.
+		The diffusion current is larger and constant since the minority carrier concentration is linear to distance.
+		Constant current means no recombination of minority carriers => TBD
+	
+*	Q:	Describe generation and recombination currents in a pn junction.
+
+	A:	Refer to Chapter 6 for more information
+		According to Schokley-Read-Hal recombination theory, 
+		when reverse-biased voltage applied, assume no mobile electrons/holes in space charge region.
+		Recombination rate R is negative, meaning a generation of electrons-hole pairs in space charge region.
+		The generated pairs are swept out of space charge region, forming a reverse-biased current.
+		This current is in addition to the ideal reverse-biased saturation current.
+		The generation current is function of the depletion width, which in turn is a function of reverse-biased voltage.
+		The generation current is the dominant reverse-biased current in a silicon pn junction diode compared to ideal saturation current.
+		when forward-bias voltage applied, some mobile electron/holes do exists in space charge region.
+		Some Recombination rate reaches the max value at the mettalurgical junction.
+		The recombination current is an integral of e*R over the space charge junction width multiplied by a customary factor.
+		Due to the recombination, additional holes/electrons are injected from p/n region to compensate the loss, which forms the recombination current.
+		Thus the recombination current is in addition to the ideal forward-bias diffusion current.
+		In lograithmus expression, ideal diffusion current has a slope of 1 and a value of Js at x=0.
+		Recombination current has a slope of 1/2 and a value of JR0 at x=0.
+		JR0 is larger than Js.
+		The total forward-bias current is the sum of both current.
+		For low Va, recombination current is dominant, while for high Va, ideal diffusion current is dominant.
+		The V-I relationship is thus has an extra coefficient Is range from 1 to 2.
+
+*	Q:	Define high-level injection and describe its effect on the diode I–V characteristics.
+
+	A:	High-level injection means the excess minority carrier concentration is larger than the majority carrier concentration.
+		The current is then porportional to the excess carrier concentration.
+		It takes a larger increase in diode voltage to produce a given increase in diode current. => TBD: how
+		Combining Recombination effect and High-level injection effect, the V-I relationship shows former at low and latter at high, in the middle shows the ideal characteristic.
+	
+*	Q:	Describe what is meant by diffusion resistance and diffusion capacitance.
+
+	A:	The reciprocal of dVa/dID at Va = V0 is so-called diffusion resistance.
+		The diffusion capacitance is different from junction capacitance in the physical mechanism. => TBD: remind that
+		In forward-bias pn junction, diffusion current is larger than junction capacitance.
+		Assuming the distribution of minority concentration reaches steady-state much quicker than the change period of voltage.
+		The difference between minority carrier concentration at differnt time is charged and discharged over the time, which leads to diffussion capacitance.
+	
+*	Q:	Describe the turn-off transient response in a pn junction.
+
+	A:	
+		The reverse current is -VR / RR (actually shall be (Va-BR) / RR).
+		If current smaller than it, a reverse-biased voltage is simultaneously put on the pn junction, which is impossible considering the capacitance.
+		If current larger than it, a forward-bias voltage is put on the pn junction, which violate the assumption.
+		Therefore the Current is changed to -VR / RR right after switch off and kept for a while.
+		This period is so called storage time, during which the execess minoriy carriers are being removed to achieve thermal-equilibrium.
+		During the storage time, the voltage and current across the junction are kept unchanged.
+		After storage time, the voltage and current start to decrease, leading this period to transition time.
+		The total turn-off time is the sum of storage time ts + the transition time t2
