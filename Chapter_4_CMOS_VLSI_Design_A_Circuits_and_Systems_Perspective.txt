@@ -1,0 +1,92 @@
+--										--
+--           CMOS VLSI Design           --
+--										--
+------------------------------------------
+
+#Chapter 4:  Delay
+
+Scratch:
+4.1.1
+Propagation delay time: max. 50% input to 50% output => max-time
+Contamination delay time: min. 50% input to 50% output => min-time
+Rise time: 20% to 80% => slopes or edge rates
+Fall time: 80% to 20% => slopes or edge rates
+timing analyzer: calculating arrival times: arrival time of input + tpd = arrival time of output => timing closure
+4.1.2
+critical path in for levels: microarchitectural, logical: fan-in, fan-out, circuit: transistor size, layout: floorplan
+main capacity consists of 1. gate capacitance of load; 2. diffusion capacitance of the driver => TBD: how these 2 comes
+Note the wire connect transistors contribute the majority of capacity
+4.2
+Figure 4.3 shows 5 sources of capacitance: x1p & x1n drain to body (driver capacitance), wire (load capacitance), x2p & x2n gate to body (load capacitance). Note why others not account => connect to constant VCC or GND
+If long-channel model applied, current saturation occurs at first, then linear regime is entered. Note that in saturation voltage changes linearly, in linear regime voltage changes non-linearly.
+Transient Response => TBD: basic circuit knowledge (4.3)
+The delay increse with the ouput capacitance and decreases with the driver current
+4.3.1
+Effective Resistance = Vds / Ids => recall the transconductance
+the definition of an unit nMOS transistor R related to lambda, pMOS transistor is 2R-3R due to lower carrier mobility
+If width increases k times, R reduce k times, C increase k times
+If length increases, current decreases, so resistance increases
+Since saturation R become relativly larger as Vds increases. Thus resistance is smaller than nR due to smaller Vds and less velocity-saturated in case of n transistors in series.
+4.3.2
+If Channel Length increases, Gate Capacitance increases, but Diffusion capacitance is unchanged. If Width increases, both increases.
+4.3.3
+Due to the lower mobility of holes, resistance in pMOS is larger than in nMOS. Thus the width of pMOS is increased (compared to nMOS!) to achieve the same rise and fall time.
+In Figure 4.5 a factor of 2 in resistance of pMOS is assumed due to the lower mobility of holes. The mobility has no impact on the capacitance, therefore providing the same width in nMOS and pMOS, both has the same capacitance and R in pMOs is twice of R in nMOS.
+In Figure 4.6, to get balance, doubling the width in pMOS to achieve equal rise and fall resistance, and as a result the capacitance of pMOS is twice large as that of nMOS. => TBD: why don't care capacitance but resistance?
+Note in Figure 4.6 during the switch, one of the resistance is out of concern right away, but all the capacitances must be taken into account.
+The example 4.2 shows several points: 
+1. to achieve equal rising and falling R, considering the output switch between 0 and 1 in worst case. From 1 to 0, 3 nMOS in series MUST contribute to pull down. So k is 3 so each nMOS have R/3. From 0 to 1, at least 1 pMOS is on, and considering the lower mobility, k is 2 so each pMOS have R (this is worst case since when more pMOS is on, the total R decreases);
+2. the k value also increase the gate capacitance proportionally;
+3. capacitance connected to constant source can be trimmed;
+4.3.4
+Transient Response => TBD: signal and process: transfer function
+Simplify 2nd order time constant to 1st order time constant
+4.3.5
+Elmore Delay, RC tree => RC circuit with no loops
+parasitic capacitance => the diffusion capacitance of driver it self (drain to body), thus it is independent of loads.
+In example 4.4 give a capacitance of (3+3m)C, where m is the number of driven units. Figure 4.6 shows a special case when m = 1, then output capacitance is 6C (driver + load)
+if width is k times widen, Elmore delay is (3 + 3 m/w) RC, where m/w is defined as fanout h (electrical effort).
+normilized delay d = h + 1 => 1 assumes an assumption that the gate (load) capacitance is equal to diffusion (parasitic & driver) capacitance. h * 3RC represents effort delay, 3 * RC represents parasitic delay
+note that change of gate size ideally NOT change diffusion capacitance (R decrease and C increase proportionally)
+In general for d = (5/3) * h + 5, 5/3 is logical effort g, h is electrical effort (fanout), (5/3) * h is effort delay or stage effort, 5 is parasitic delay
+Example 4.7 & 4.8 shows the difference of propagation delay (slowest) and contamination delay (fastest). => very important!!!
+For falling transition in the slowest (worst) case, the bottom nMOS switch ON, GND is source, 3 nMOS resistances contribute to delay, all nMOS/pMOS capacitances contribute to delay;
+For rising transition in the slowest (worst) case, the bottom nMOS switch OFF, VCC is source, 1 pMOS resistance contributes to delay, all nMOS/pMOS capacitances contribute to delay; Note that only the pull-up R is taken into account. 
+For falling transition in the fastest (best) case, the top nMOS switch ON, GND is source, 3 nMOS resistances contribute to delay, all pMOS capacitances and 1 top nMOS capacitance contribute to delay;
+For rising transition in the fastest (best) case, the all nMOS switch OFF simultaneously, VCC is source, 3 pMOS resistances contributes to delay, all pMOS capacitances contribute to delay;
+Note the aim of the best case is to minimize the capacitance between source and output; and the aim of the worst case is to maximize the capacitance between source and output; The other capacitances shield diffusion capacitance but do not contribute to the output delay. That's why Elmore delay is conservative.
+4.3.6
+shared contacted diffusion note reduce capacitance, uncontacted diffusion note are smaller than normal
+folding technique is ofen used to reduce the diffusion capacitances
+4.3.7 TBD
+4.4
+Know the equation: d = f + p = gh + p
+4.4.1
+logical effort g: the input capacitance in unit of input capacitance of inverter
+Table 4.2 shows a change of logical effort with different input number. Note that the logical effort of multiplexer composed of tristate is indpendent of input number, but the parasitic delay increase with input number
+4.4.2
+Parastic delay is on first order independent of transistor size w since R decrease and C increase proportionally. However if transistor is folded, C is no longer linear decrease. So often a bigger w tend to have a lower parasitc delay
+The quadratic delay which caused by the seires transistors indicates that at some point it is better to splite a large gate into a cascade of 2 smaller gates.
+4.4.3
+know FO4 delay estimation
+know a ring oscillator, which can be used to check if a chip is faster or slower than nominally expected
+4.4.4
+Note that the fanout h is the ratio of Cout/Cin not simply equal to the number of driven units. => which assume that the driver and the loader has the same gate capacitance (input capacitance)
+If defien drive to be x = Cin / g, as a number of unit input capacitance, d = g * Cout / Cin + p = Cout / x + p. This formation is more intuitive since x express directly the ratio how it change the output capacitance without considering which type of gate it is (different g).
+4.5.1
+know the equation F = GBH
+F is the product of the stage efforts, independent of gate sizes and is known. And the path effort delay DF is the sum of the stage efforts. So to have a min. DF, each stage shall have the same effort.
+The key of Logical effort is to estimate the minimal path delay by only knowing the number of stages N, the path effort F (transistor size is unknown)
+Example 4.13: knowing that not only consider the load the path must drive but also the load the path may present to the former driver.
+4.5.2
+Know how to choose the best number of stages => a balacne between parasitc delay and effort delay
+4.5.3
+Example
+4.5.4
+Table 4.5
+Need example for each of the key insights
+4.7
+Increasing the size of a transistor decreases its resistance and thus makes it faster at driving a constant load. However it increases input capacitance and makes the previous stage slower. => this means on one side Cin is larger compared to Cout, so fanout h is smaller, which makes the dely samller. On the other side, Cin serves as Cout of the previous gate, so if it is larger, the previous gate become relatively slower.
+Optional parts TBD
+
+ 

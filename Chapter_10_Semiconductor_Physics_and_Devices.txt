@@ -1,0 +1,27 @@
+--										--
+--   Semiconductor Physics and Devices  --
+--										--
+------------------------------------------
+
+#Chapter 10: Fundamentals of the Metal-Oxide-Semiconductor Field-Effect Transistor
+
+scratch:
+
+For p-type substrate, if positive voltage is applied to the top metal gate, an accumulation layer of holes forms on the botton plate of the MOS capacitor. If negative voltage is applied to the top metal gate, holes are pushed away from the interface, leaving a negative space region.
+In energy diagramm, when positive voltage applied, the negative space charge region and the gate forms a electric field from gate to substrate. For an electron, the gate has relatively lower potential compared to the substrate potential. So the energy level of substrate is lifted up.
+When negative voltage applied, the accumulation of holes at the interface and the gate forms an electric field from substrate to gate. For an electron, the gate has relatively higher potential compared to the substrate potential. So the energy level of substrate is pulled down.
+From another point of view, the negative voltage trigger the accumulation of hole at the interface, which means there are more holes in the valance band. Therefore, the electron are more likely to obtain a hole in the valance band than normal situation. That means the Fermi Energy level must be more close to valance band to keep 50/50 distribution. And since Fermi Energy level is a horizontal straight line, the valance band shall bend towards Fermi Energy level. So can be the other situation explained.
+Why is the maximum space charge width exist at the inversion transition point?
+How to calculate the work function difference? Note the Eg/2 is an approximation of Ec - EFi in Semiconductor side.
+What is the real meaning of metal-semiconductor word function difference? It refers to the bending extend of semiconductor's energy level + Voltage difference between sides of oxide.
+Why assumes zero net charge in the semiconductor? Note for flat-band condition, no band bending in semiconductor and therefore zero net space charge since no gathering of mobile electrons/holes.
+Note that in Figure 10.20 when a positive voltage applied to the gate, the Vox shows higher potential on the left side and lower on the right.
+Repeat the derivation of the threshold voltage.
+How to understand the minimal capacitance under the inversion condition? Note once inversion layer forms, depletion will not go deeper, but the inversion layer charge density can continue increase.
+Why is the space charge width not changed under the inversion condition? Inversion layer has mobile carriers not space charge, so they are at the surface between oxide and the substrate.
+How to understand smearout in  the presence of interface states? It decreases capacitance before midgap and increase capacitance after midgap. Take p-substrate for example. If negative voltage applied, positive donors exists, eliminate some holes, which corresponds to decrease Q, so C is smaller than ideal. In midgap, all acceptors and donors are neutral, C is equal to ideal. After midgap, negative acceptors exists, attracting more holes, which corresponds to increase Q, so C is larger than ideal.
+For n-channel MOS, When IDS increase, why is the voltage drop accross the oxide near the drain terminal decrease? Image there are more holes near the drain terminal, consuming the electrons. THe channel inversion charge is relatively less. From anohter point of view, the voltage difference between gate and the drain is smaller than that between gate and the source, which also means the channel inversion charge is less.
+10.3.3 left TBD
+The frequecy feature is characterized by the internal gate-to-source voltage through the transconductance.
+equation 10.88 how to understand
+avalanche effect and latch-up problem

@@ -1,0 +1,16 @@
+--										--
+--   Semiconductor Physics and Devices  --
+--										--
+------------------------------------------
+
+#Chapter 9: Metal-Semiconductor and Semiconductor Heterojunctions
+
+scratch:
+
+The current transport in a metal-semiconductor junction is due mainly to majority carriers was opposed to minority carriers in a pn junction
+The current transport is not ambipolar transport?
+No diffusion capacitance in Schottky diode since it is a majority carrier devicce, where the diffusion play an negligible role.
+No minority carrier storage time when switching since the majority carrier is the current generator.
+Ideal Nonrectifying Barrier: Metal has a smaller work function than semiconductor. Smaller workfunction means a higher potential. In thermal equilibrium, all particles tends to obtain the lowest potential state, therefore the electrons tends to flow from metal to semiconductor after contact. As a result, semiconductor contains more electrons in the surface of semiconductor, forming a electric field from metal to semiconductor. From the view of electrons, this electric field forms a potential barrier to prevent more electrons flows to semiconductor. This means the potential of semiconductor is relatively lifted up so that the Fermi Energy is kept the same from metal to semiconductor. If positive voltage is applied to metal, electrons are pulled back from semiconductor, so the barrier colapses and current can easily flow from metal to semiconductor. If positive voltage is applied to semiconductor, the potential barrier is kept to Conduction Energy - Fermi Energy, which is fairly small in low to mederate doping concentration so that the current can easily flow from semiconductor to metal.
+Why is the Conduction Energy lifted up when positive voltage is applied to metal?
+Why is the Conduction Energy pulled down when positive voltage is applied to semiconductor?

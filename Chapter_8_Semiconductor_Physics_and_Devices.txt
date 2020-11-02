@@ -102,3 +102,19 @@ Checkpoint:
 		During the storage time, the voltage and current across the junction are kept unchanged.
 		After storage time, the voltage and current start to decrease, leading this period to transition time.
 		The total turn-off time is the sum of storage time ts + the transition time t2
+		
+		
+Problems:
+
+*	3	Firstly calculate the minority carrier concentration in thermal equilibrium, then calculate it in forward-bias.
+		The equation also applies for reverse-biased.
+		Note that the minority concentration decay to nearly zero in forward-bias.
+		In reverse-biased, minority carrier concentration ramp from low up to thermal-equilibrium state in far end.
+		In forward-bias, minority carrier concentration decay from high down to thermal-equilibrium state in far end.
+		
+*	9	Note the reverse-biased current has a negative sign.
+		From calculation we know that only a reverse volatage of 0.016V 90% of reverse current has been reached.
+		
+*	11	Note that the current is determined by the minority carrier concentration, this is the characteristic of ambipolar carrier transfer
+
+

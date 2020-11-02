@@ -1,0 +1,29 @@
+--										--
+--   Semiconductor Physics and Devices  --
+--										--
+------------------------------------------
+
+#Chapter 12: The Bipolar Transistor
+
+scratch:
+12
+transistor an active device since it is capable of current gain, voltage gain and signal power gain. While diode is passive device.
+12.1
+npn type BJT doping: Emitter (n++), Base (p+), Collector(n)
+the use of Buried layer
+isolation since collector may have different potential
+12.1.1
+why is E-B space charge region is thinner than B-C space charge region => recall the forward bias and reverse biased
+12.1.2
+Equation 12.1
+Collector Current iC is controlled by the voltage BE, which is the basic transistor action
+Emitter Current iE has 2 parts: one is iE1, which equals to the collector current, the other one iE2, which results from the majority holes from B injected to E due to the forward bias voltage
+iE = iE1 + iE2 = iC + iE2
+common-base current gain alpha = iC/iE shall be close to 1 as possible since iE2 is not part of the basic transistor action
+On the first approximation, iC is independent of vCB and the bipolar transistor acts like a constant current source
+Base Current iB has 2 parts: one is iBa, which equals to iE2, the other one is iBb, which results from the recombination of minority carrier electrons with majority carrier holes in the base. Both parts are proportional to exp(vBE/Vt)
+common-emitter current gain beta = iC/iB
+12.1.3
+
+
+

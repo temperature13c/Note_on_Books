@@ -1,0 +1,12 @@
+--										--
+--   Semiconductor Physics and Devices  --
+--										--
+------------------------------------------
+
+#Chapter 11: Metal-Oxide-Semiconductor Field-Effect Transistor: Additional Concepts
+
+scratch:
+How to connect Figure 11.2 to Figure 11.3: Note that the PN junction lower energy band in n region due to the internal electrical field from n region to p region, which means the electrons need to consume energy to get to p region. Another side, the positive VDS and VSB lower the energy band further.
+The channel modulation shows that the drain current still keep increasing for a small amount after saturation since the increase of VDS shorten the channel length, which as a result increase further the drain current. Since current is correlated to VDS, the output resistance is not infinite.
+The near avalanche and snapback breakdown, why it the source pn junction forward-biased when avalance near drain produce holes which injected into substrate? Require Chapter 12
+Figure 11.25 shows the potential difference betwwen source, channel and drain, all are relative

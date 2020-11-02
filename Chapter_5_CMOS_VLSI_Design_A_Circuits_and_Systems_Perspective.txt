@@ -1,0 +1,19 @@
+--										--
+--           CMOS VLSI Design           --
+--										--
+------------------------------------------
+
+#Chapter 5:  Power
+
+Scratch:
+5.1.2
+When an inverter input switches from 1 to 0, VDD charge half energy to the output capacitance, and half dissipates in pMOS; when it switches from 0 to 1, no energy is drawn from VDD, the hald energy in output capacitance is dissipated in nMOS
+what is short-circuit current
+Definition of dynamic power Pswiching = alpha * C * VDD^2 * f. Note that the activity factor is the probability that output change from 0 to 1 since only it consumes power. E.g. alpha of clock = 1, alpha of register = 0.5
+5.1.3
+Power dissipation has 2 parts: dynamic dissipation and static dissipation.
+dynamic dissipation has 2 parts: charging and discharging of load capacitances as gate switches; short-circuits current when pMOS and nMOS are partial ON
+static dissipation has 4 parts: subtrheshold leakage through OFF transistors (Note there is also leakage when transistors switches); gate leakage; junction leakage s/d; contention current => TBD: section 9.2.2
+3 modes: active, standby and sleep
+leakage become a larger main factor in non-meter tech, so does High-speed I/O
+5.2

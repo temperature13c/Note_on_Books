@@ -117,24 +117,24 @@ Review questions:
 	
 Problems:
 
-*	7.7	When temperature changes, the intrinsic carrier concentration varies by orders (temperature go higher, concentration go higher).
+*	7	When temperature changes, the intrinsic carrier concentration varies by orders (temperature go higher, concentration go higher).
 
-*	7.9 The built-in barrier is determined by the different Na/Nd concentration of contacting pn junction.
+*	9	The built-in barrier is determined by the different Na/Nd concentration of contacting pn junction.
 		An approximation shows that the width does not extended to the second n region.
 		The pn junction is then treated as simple uniform doping n region.
 		
-*	7.17 The junction capacitance per area is firstly calculated.
+*	17	The junction capacitance per area is firstly calculated.
 
-*	7.21 For one-sidedd pn junction, the change of the low-doping concentration has much more effect on the W, E and C.
+*	21	For one-sidedd pn junction, the change of the low-doping concentration has much more effect on the W, E and C.
 
-*	7.27 The Vbi is much less affected by the change of doping concentration than others.#
+*	27	The Vbi is much less affected by the change of doping concentration than others.#
 
-*	7.29 To keep the space charge region in one side, make sure the doping concentration is this side is low enough.
+*	29	To keep the space charge region in one side, make sure the doping concentration is this side is low enough.
 		
-*	7.35 The breakdown voltage is more related to the low-doping region.
+*	35	The breakdown voltage is more related to the low-doping region.
 
-*	7.37 The Ecrit is a function of impurity doping concentration
+*	37	The Ecrit is a function of impurity doping concentration
 
-*	7.41 use doping-concentration to get Ecrit, then calculate the VB to be 291V.
+*	41	Use doping-concentration to get Ecrit, then calculate the VB to be 291V.
 		using xn to calculate VR.
 		Since VR is much larger than VB, so breakdown is reached first.
