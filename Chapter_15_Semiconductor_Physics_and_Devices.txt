@@ -1,0 +1,64 @@
+------------------------------------------
+--										--
+--   Semiconductor Physics and Devices  --
+--										--
+------------------------------------------
+
+#Chapter 15: Semiconductor Microwave and Power Devices
+
+Scratch:
+15.1
+Tunnel Diode, Esaki diode => a pn junction in which both n and p region are degenerately doped => fermi Energy in valance band or conduction band => at 0 K, electrons still in n region conduction band and holes in p region valance band
+high doping concentration leads to narrow charge region (50 Armstrong) => why? recall
+When forward-bias voltage applied, electrons need less effort to reach p region => part of buit-in barrier is counteracted by forward-bias voltage => less elctrical field is required to balance the rest of buit-in barrier => the space charge region is narrower. So the energy band from P to N bends downwards less.
+For V < Vp, tunneling current dominates, for Vp < V < Vv, tunneling current decrease more than diffusion current increase, for Vv < V, diffusion current dominates.
+Why tunneling electrons decreases? => as V increases, egnery band bends less, less electrons-holes in oppsite side => the relative position of Fermi Energy in n conduction and p valance is fixed, watch the opposite parts between n conduction under Efermi and p valance over Efermi.
+A decrease in current with an increase in voltage means a negative differential resistance between Vp and Vv => Why needed for oscillator?
+The small signal input impedance => TBD: need circuit knowledge!
+Their is a maximum resistive cutoff frequency fr, a value larger than this results in a loss of negative resistance characteric.
+tunneling process is a majority carrier effect => TBD: how to understand and what is its use?
+note that tunneling current will increase monotonically and repidly with revers-biased voltage.
+15.2
+A less curved upper valley over the lower valley => less curved means larger effective mass => TBD: change slow => drift current decreases
+Mechanism => TBD: more to learn
+15.3
+A negative differential resistance is presented by a 180 degress of phase shift of voltage and current, which is differnt from the mechanism in tunneling diode. => TBD: more to learn
+15.4.1
+vertical bipolar npn transistor, but with collector at the bottom to increase cross section
+low doped primary collector region for allow large base-cllector voltage without breakdown
+high doped secondary collector region to reduce resistance
+large base width to prevent puch-through breakdown
+interdigitated structure to prevent emitter current crowding effects
+15.4.2
+wide base width => smaller current gain beta => TBD: why?
+large area device => large junction capacitance => lower cutff frequency
+maximum rated collector current Ic,max <= wires capability, enough current gain, maximum power dissipation
+maximum rated voltage Vce,sus <= avalanche breakdown
+second breakdown <= high voltage AND high curent, positive feedback, results in melting and short circuit
+maximum rated power Pt = VceIc
+SOA is bounded by Ic,max, Vce,sus, Pt and second breakdown
+15.4.3
+use darlington pair to increase current gain beta total = beta A + beta B + beta A * beta B => effective
+The use of a diode => turn off device faster => TBD: how?
+Figure 15.18
+15.5
+15.5.1
+Adavantage of power MOSFET over BJT is input impedance is extremely large => constant current
+large width is required for large current, achieved by repetitive pattern of small cells in parallel
+moderate doping => breakdown occurs more easily when heavy doping
+how to defined channel length and width?
+DMOS and VMOS => TBD more to learn
+15.5.2 
+on resistance Ron = Rs + Rch + Rd => source and drain resistance are not negligble
+current increase => power dissipation increase => temperature higher => mobility lower => Rch larger => current limited
+Compared to power BJT, faster switching time, no second breakdown, stable gain over temperature range => TBD: why no second breakdown?
+stability => negative feedback to limit the current
+SOA for power MOSFET is also definedy by 3 factors: Id,max, BVdss, PT = Vds * Id
+15.5.3
+note that ohmic contact of source also contact the p region so that in steady state voltage between body and source is 0, the parastic BJT is cutoff
+snapback breakdown => TBD: refer to 11.4.1
+15.6
+
+
+
+

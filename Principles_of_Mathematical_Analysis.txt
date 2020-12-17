@@ -1,0 +1,30 @@
+------------------------------------------
+--										--
+--  Principles of Mathmatical Analysis  --
+--										--
+------------------------------------------
+
+Scratch:
+Chapter 1: introduction
+set, ordered sets, upper bound, least upper bound(supremum), greaest lower bound(infimum)
+field => a set with 2 operations addition and multiplication, ordered field
+existence theorem => there exists an ordered field R which has the least-upper-bound property, R contains Q as a subfield
+archimedean property
+Q is dense in R => between any 2 real numbers there is a rational one
+extended real number system introduce 2 symbols: +inf and -inf => for every x in R, -inf < x < +inf => +inf is an uppoer bound => every non-empty subset has a least upper bound
+extended real number system can not form a field
+
+Chapter 2: basic topology
+a mapping of A into B => more specific: a mapping of A onto B
+domain, value and range of f
+image, inverse image
+one-to-one mapping => 1-1 corresondence => A and B have the same cardinal number => A and B equivalent A~B
+definition of finite, infinite, countable, uncountable, at most countable => example
+Note A is infinite if A isequivalant to one of its proper subsets => see 2.5 example
+sequence => function f defined on the set J of all positive integers => terms of sequence need not be distinct
+Theorem 2.8: every infinite subset of a countable set A is countable => how to understand
+union of the sets, the intersection of the sets
+not all infinite sets are countable such as the set of all real numbers is uncountable or set of all sequences whose elements are 0 and 1 
+
+
+

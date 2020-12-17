@@ -1,3 +1,4 @@
+------------------------------------------
 --										--
 --   Semiconductor Physics and Devices  --
 --										--
@@ -24,6 +25,58 @@ On the first approximation, iC is independent of vCB and the bipolar transistor 
 Base Current iB has 2 parts: one is iBa, which equals to iE2, the other one is iBb, which results from the recombination of minority carrier electrons with majority carrier holes in the base. Both parts are proportional to exp(vBE/Vt)
 common-emitter current gain beta = iC/iB
 12.1.3
-
-
-
+In figure 12.8, 3 mode of operation: 1. cutoff, all currents in transistor are 0 since vBE <= 0; 2. forward-active, vCB > 0 so that B-C junction is reverse biased. As vBE increase, iC increase, RC gets more voltage so that vCB decrease. 3. saturation when vCB < 0. In this case, both BC junction and BE junction are forward biased and are not controlled by vBE.
+In figure 12.9, Note the cutoff occurs when iC = 0 (due to iB = 0), saturation occurs when change of iB brings no change on iC (where all curves overlapp) and the forward-active area in between when iC = beta * iB => TBD: the inital rising and going flat, how to explain?
+The forth mode means emitter and collector switches. Due to the different dopping level, the behavior is also different.
+12.2.1
+In base region, assuming of xB < LB shows that the excess electron concentration is approximately a linear function of x through the neutral base region.
+In emitter region, the excess concentration also vary approximately linearly with distance if xE is small. If xE is comparable to LE, it varies expoentially.
+In collector region, assuming the collector is long makes the excess contrntration a expoential decay on account of xC
+12.2.2
+In cutoff, both BE and BC junction are reverse biased. Since xB << LB, there is almost no minority carriers in base region.
+In saturation, both BE and BC junction are forward biased. Excess minority exist at the edge of each space charge region. And the gradient of minority carriers forms the current (TBD: due to the differnet dopping level?)
+Note that forward bias cause the excess minority carrier gathering at the edge of space charge region, while reverse bias sweep out the excess minority carrier away from the edge of space charge region.
+12.3.1
+Figure 12.18 => recall previous chapter ?
+Recombination in forward biased space charge region? Generation in reverse biase space charge region?
+7 sources of current density J
+emitter injection efficiency factor, base transport factor, recombination factor
+12.3.2
+For the emitter injection efficiency to be close to unity, the emitter doping must be large compared to the base doping.
+The base transport factor will be close to 1 if xB << LB.
+As VBE increases, the recombination current becomes less dominant and the recombination factor approaches unity
+equation between common-base current gain and common-emitter current gain
+12.4.1
+base width modulation (early effect): when reverse biased voltage in BC junction increases, the space charge space also increases, therefor xB is smaller, the minority gradient then increase, causing a larger diffusion current.
+Note that the early effect causes the non-zero slop in Figure 12.22 => as vCE increases, the reverse biased vBC increase, causing the diffusion current to increase.
+12.4.2
+Figure 12.24 shows, when vBE is too small, recombination in BE junction is dominant, so common-emitter current gain is low, when vBE is too large, high-injection enhence the hole injection from B to E, so the common-base current gain is lowered back. => this is 1 of 2 high-injection effect
+another effect is the high-injection of minority carriers will slow down its speed as the majority carriers also increase in the nearly same order => p * n = p0 * n0 exp(vBE/kT) shall always apply
+12.4.3
+Another effect to cause the fall back in figure 12.24 is Emitter bandgap narrowing due to a over-high doped Emitter.
+12.4.4
+Current Crowding effect causes localized heat and high-injection effect: Since the base is relative wide and thick, the potential at the edge is higher than the center.
+*12.4.5
+12.4.6
+2 Breakdown effect: one is punch-through when BC junction reverse bias volatage is too large so that BC depletion region extends to BE space charge region. The other is avalanche breakdown (Note that Zener breakdown is not considered since doping concentration is low): TBD=> Recall the Zener breakdown and Avalanche breakdown
+12.5.2
+GP model can be used to describe nonideal effect
+12.5.3
+What is diffusion capacitance & diffusion resistance? => recall
+what is junction capacitance? => recall
+The capacitacne leads to frequency effects in the transistor so taht the gain is a fucntion of the input signal ferquency.
+Example 12.13 is a good example
+12.6.1
+Time delay from emitter to collector consists of 4 parts: 1. BE junction capacitance charge time; 2. B region transit time; 3. C depletion region transit time (reverse biased, depletion region is large than in forward bias); 4. C capacitacne charge time;
+TBD: why these 4?
+12.6.2
+the design of high-frequency transistors requires small device geometries in order to reduce capcitances and narrow base widths in order to reduce the base transit time
+12.7.1
+frequency effects assumes only small changes in the magnitude of the signal
+For switching, considering 4 time periods: delay time, rise time, storage time, fall time
+storage time is the most important parameter in bipolar transistor switching speed
+12.7.2
+to reduce storage time, schottky-clamped transistor can be used => TBD: recall chapter 9
+When base voltage switches to negative voltage, the reverse base current pulls the excess holes from emitter and base region. However, due to the gradient of the minority carrier, the collector current not not change significantly at first. => This will last until the minority carrier due to saturation is removed so that the vBC is reduced to 0V.
+The schottky transistor helps to accelerate thie process by shunting a large part of current. => Understand that voltage results from the gathering of charges
+12.9 => TBD: Summary

@@ -3,12 +3,11 @@
 --										--
 ------------------------------------------
 
-#Chapter 5:  Power
+#Chapter 5: Power
 
 Scratch:
 5.1.2
 When an inverter input switches from 1 to 0, VDD charge half energy to the output capacitance, and half dissipates in pMOS; when it switches from 0 to 1, no energy is drawn from VDD, the hald energy in output capacitance is dissipated in nMOS
-what is short-circuit current
 Definition of dynamic power Pswiching = alpha * C * VDD^2 * f. Note that the activity factor is the probability that output change from 0 to 1 since only it consumes power. E.g. alpha of clock = 1, alpha of register = 0.5
 5.1.3
 Power dissipation has 2 parts: dynamic dissipation and static dissipation.
@@ -16,4 +15,108 @@ dynamic dissipation has 2 parts: charging and discharging of load capacitances a
 static dissipation has 4 parts: subtrheshold leakage through OFF transistors (Note there is also leakage when transistors switches); gate leakage; junction leakage s/d; contention current => TBD: section 9.2.2
 3 modes: active, standby and sleep
 leakage become a larger main factor in non-meter tech, so does High-speed I/O
-5.2
+5.2.1
+clock gating (stop the clock) can save the power. => TBD: section 10.3.5 discusses enable register design
+why clock gating signals are some of the most critical paths for the design => TBD
+Use latch to prevent enable change before clock falls => Figure 5.7: enable is latched at falling edge, then AND enable and clock produce a clock which is stablized about half cycle before the clock rising edge (used for targeted blocks)
+Why swithing probability of uncorrelated data is 0.25 => P * not P = 0.5 * 0.5
+Glitches consummes more power (active factor > 1), often happen at ripple carry adder and array multiplier => TBD: chapter 11
+5.2.2
+switch capacitance has 2 parts: wire and transistors
+high data exchange design shall be put close to reduce wire capacitance
+trade-off between small stage effort and power consumption => increase stage effort to reduce gate size (saving power) => such as IO with a stage effort of 8-12 => register has smaller gate size since it has higher active factor than combinational logic normally => since it triggered by clock?
+in general, large energy savings can be made by relaxing a circuit a small amount from the minimum delay point
+if wire is long, use inverter or buffer to drive is energy-efficient => TBD: Chapter 6
+5.2.2.1 => Skip
+5.2.3
+as many transistors are operating in a velocity-saturated regime, the lower power supply may not reduce performance as much as long-channel models predict => TBD: review chapter 2
+high voltage domain for cell stability (memory); middle for processor; low for IO at lower speeds
+High voltage domain to Low voltage domain can be directly bridged but note a case if the bridged low voltage register runs faster than other nominal low voltage regsiter (TBD: why? => reach threshold faster), so the contamination delay must calculate this effect.
+however low voltage domain can NOT bridged to high low voltage domain directly => causing nMOS and pMOS on at the same time => use level converter at Figure 5.15
+level converter => consider use pMOS in high voltage domain and nMOS in low voltage domain => disadvantage: delay and power => alleviated by register (providing no level converter is required in combinational logic)
+use voltage domains either 1) associate each domain wiht a area of the floorplan (then level converter should be placed at the boundary) 2) use CVS to mix 2 domains in the block
+DVFS either use 1) lookup table to find relation between frequency and voltage or 2) ring oscillator to tracks the performance and then feedback => TBD: 7.5.3.4
+DVS is also effective at reducing leakage during periods of low activity since subthreshold and gate leakage are strongly sensitive to the supply voltage => TBD: chapter 2
+5.2.4
+performance can be recouped through parallelism => TBD: 5.5.2
+5.2.5
+short-circuit current has more power dissipation when input edge rate slower and less power dissipation when load capacitance increases => large capacitance cause less output swing
+ratio v = Vt / VDD => if larger than 0.5, no short-circuit current => in nanometer process, Vt scarcely fall below 0.3 V without excessive leakage => short-circuit current is negligible => TBD: why not below 0.3 V
+5.2.6
+resonant circuit => store energy for clock
+5.3
+CMOS replace nMOS => the contention current of nMOS limits the number of transistors in chip
+static power contains 1) subtrheshold leakage 2) gate leakage 3) junction leakage 4) contention current
+5.3.1
+5.3.1.1
+subthreshold leakage equation (5.19) coefficients 1) Ioff => high when low-Vt and low when high-Vt: defining OFF transistor current; 2) DIBL-effect with (Vds -VDD) (TBD: Drain-induced barrier lowering is a short-channel effect: drain close to gate so that transistor is turned on prematurely), effectiver when geometry shrinks; 3) Body effect (TBD: also turn on channel prematurely)
+Ioff => higher temperature lowers Vt, and increase Ioff 4) Vgs
+stack effect => series transistors leak less. See Figure 5.20 and its explaination => a feedback system
+SOI circuits are attractive for low-leakage design => TBD: chapter 9.5
+5.3.1.2
+gate leakage is a strong function of dielectric thickness
+pMOS leakage is 1 order smaller than nMOS in SiO2 dielectric
+gate leakage also depends on voltage acrosss the gate => stack effect can alleviate the leakage by putting the OFF transistor closer to the rail (TBD: OFF transistor has no leakage, the point is to let ON transistor has smaller Vgs)
+table 5.2 shows a typical NAND3 leakage summary => TBD: need chapter 2
+5.3.1.3
+junction leakage caused by source/drain diffusion region with a differnt potintial from the substrate
+BTBT and GIDL can result in leakage current => TBD: what is BTBT and GIDL
+5.3.1.4
+static CMOS circuits have no contention current except special case => TBD: chapter 9.2.2
+5.3.1.5
+Example 5.4 shows an estimation way => required input: transistor size, number, leakage per size
+5.3.2
+power gating consists of 1) header transistor 2) power gated block 3) output isolation
+state retention registers using 2nd power supply (TBD: 10.4.3) or alternatively store important registers to memory
+in case that saving or lossing states cost too much, turn off the power supply to a minimal level using DVS => what is this?
+5.3.2.1
+power gating can be designed with 1) external disable input to a voltage regulator 2) internal high-Vt header or footer switches
+power switch has a neffective resistance so it cause voltage drop on VDDv and increase the delay of the block
+the power switch is generally made of many transistors in parallel => to avoid IR and L di/dt drop noise (TBD: 13.3) and electromigration of the power bus (TBD: 7.3.3.1), turn on transistors gradually
+5.3.3
+Good design practice starts with high-Vt devices everywhere and selectively introduces low-Vt devices where necessary
+multiple thresholds requires additonal implant masks (so cost increase) => there is a trade off
+Alternative change channel length can also vary the threshold without addition implantation => but the physical size varies
+5.3.4
+variable threshold CMOS => using body bias to dynamically adjust the threshold voltage
+low-Vt devices can be used and a reverse body bias (RBB) can be applied during sleep mode to reduce leakage [Kuroda96]. Alternatively, higher-Vt devices can be used, and then a forward body bias (FBB) can be applied during active mode to increase performance
+Body bias can be applied to the power gating transistors to turn them off more effectively during sleep
+too much reverse body bias leads to junction leakage through BTBT (TBD: what is this), and too much forward body bias leads to current from body to source. So under 90 nm body bias gain no more benefits
+5.3.5
+input vector control => specified input vector to minimize the block in sleep => refer to table 5.2
+5.4 => TBD: need chapter 2
+The minimum energy point typically consumes an order of magnitude less energy than the conventional operating point, but runs at least three orders of magnitude more slowly
+thermodynamic minimum of energy per elementary act of information was kT ln2 => TBD: Informationstheory
+note that there is a trade off between power and delay
+5.5
+power rather than number of transistors now limits the chip performance => multicore processors therefore is widely used
+5.5.1
+memor have a much lower power density than logic due to their low activity factor and regularity
+heterogeneous architector take advantage in power consumption than general purpose processor when facing special cases
+5.5.2
+saving power by parallelism & pipelining
+N parallel reduce frequency to 1/N => power reduce by N^2, area multiplied by N
+N pipeline reduce logic but add mroe registers
+when leakage is important, pipeline is prefered
+5.5.3
+a trade off between power saving and wake-up time => TBD: section 13.2.5 
+5.7
+CMOS replace nMOS at mid 1980s due to the increasing power dissipation => nMOS use depletion load nMOS pull ups as resistive loads => gate with output 0 dissipate contention power Figure 5.32
+in 1990s Vcc is scaled down from 5V => threshold voltage decrease => subthreshold leakage become an issue. Thinner gate dialectirc lead to gate leakage caused by the quantum mechanical effect
+Clock gating is firstly introduced to save power
+Voltage domain is then introduced to save power: 1st stage to seperate core and I/O; 2nd stage to seperate memory from core logic => memory use higher voltage for reliability
+Body bias and cluster voltage scaling is not widely used
+the last measure is to use CMOS instead of nMOS
+
+
+
+
+
+
+
+
+
+
+
+
+

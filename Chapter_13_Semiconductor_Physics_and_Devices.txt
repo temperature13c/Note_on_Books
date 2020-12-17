@@ -1,0 +1,35 @@
+------------------------------------------
+--										--
+--   Semiconductor Physics and Devices  --
+--										--
+------------------------------------------
+
+#Chapter 13: The Junction Field-Effect Transistor
+
+scratch:
+2 types of JFET: pn JFET (pn junction) and MESFET (Schottky barrier rectifying junction)
+what is an unipolar transistor? Only one type of carrier, the majority carrier, in involved in the operation.
+13.3.1
+a depletion mode device means a voltage must be applied to the gate terminal to turn the device off
+a enhancement mode device means a voltage must be applied to the gate terminal to turn the device on
+note that space charge region has nearly no carriers
+in case of constant vDS, vGS increases, the space charge region are widened, resistance become larger until pinch off when resistance is infinite => no current pass through channel. vDS and iDS are always linear related.
+in case of constant vGS = 0, vDS incresase, the space charge region near drain is widened, reistance become larger until pinch off when resistance is infinite => constant current pass through channel. vDS and iDS are not linear related. Note that in this pinchoff, the width of space charge region is relatively short, which allows the carriers injected from source are swept to drain by the internal electrical field.
+13.1.2
+pinoff, threshold
+recall Shotkky barrier and ohmic contact => TBD
+13.2.1
+internal pinchoff voltage Vp0, pinchoff voltage Vp, built in voltage Vbi
+for n-channel pn JFET => Vp = Vbi - Vp0 => pinchoff voltage is negative
+for p-channel pn JFET => Vp = Vp0 - Vbi => pinch off voltage is positive
+considering VGS
+for n-channel pn JFET => VDS(sat) = Vp0 - (Vbi - VGS) => D to S positive
+for p-channel pn JFET => VSD(sat) = Vp0 - (Vbi + VGS) => S to D positive
+note that as |VGS| increase, Vsat decrease => larger VGS reverse biased extends the space charge region more, so saturation is more easy to achieve
+13.2.2
+skip the deduction and use the equation 13.14, As |VGS| increase, saturation current decrease
+13.2.3
+The definition of transconductance => also used in MOS, describes how much the change of control voltage affect the change of output current
+13.2.4
+TBD
+

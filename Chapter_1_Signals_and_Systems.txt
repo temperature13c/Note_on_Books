@@ -1,0 +1,17 @@
+--										 --
+--          Signals and Systems          --
+--										 --
+-------------------------------------------
+
+#Chapter 1: Signals and Systems
+
+Scratch:
+1.1
+continuous/discrete system
+the total energy/power over finite/infinite time calculation for both systems => energy/power may not refer to real physical energy/power
+3 types of system over infinite time: 1. E => finite, P => 0; 2. P => finite, E => infinite; P/E => infinite;
+1.2
+time shift, time reversal, time scaling, periodic, aperiodic, even, odd => any signal can broken into even & odd parts
+1.3
+
+
