@@ -1,0 +1,91 @@
+--										--
+--           CMOS VLSI Design           --
+--										--
+------------------------------------------
+
+#Chapter 6: Interconnect
+
+Scratch:
+6.1.1
+width w, length l, thickness t, spacing s and dielectric height h => wire pitch = w + s, aspect ratio = t/w
+use Cu instead of Al to reduce wire resistance, use low-k insulator to reduce capacitance => TBD: section 3.4.2
+6.1.2
+top-level metal is usually used for power and clock distribution due to its lowest resistance
+TBD: section 5.3.2 and 13.2.2
+6.2
+L-model, Pi-model, T-model => Pi-model is better for hand calculation
+6.2.1
+abstract resistivity / thickness since they are process-dependent, for disigner, l and w are changable
+the diffusion barrier and dishing step can lead to size shrinking
+multiple vias can be used to reduce resistance
+6.2.2
+capacitance includes 1) parallel plate capacitance; 2) fringing capacitance; 3) neighbor capacitance;
+neighbor capacitance is usually not calculated with 1) and 2) due to its complexity. Instead a upper bound is given fro propagation dely calculation and power estimation and a lower bound is given for contamination delay calculation
+the uppoer bound is calculated by assuming layer above and below as ground planes
+6.2.3
+inductive crosstalk => changing magnetic field in turn produce currents in other loops
+6.2.4
+the skin effect can raise the effective resistance at high frequency so that inductance become less dominant => help to reduce inductive crosstalk
+6.2.5
+Interconnect capacitance is independent of temperature, but the resistance varies strongly => if temperature increase, resistance increase
+6.3.1
+wire delay consists of 1) wire capacitance; 2) resistance; => both capacitance and resistance contribute to flight time?
+example 6.3 => TBD: chapter 4
+TBD: section 6.4.2 use repeater to break a long wire
+example 6.5 => Elmore delay model only considers the resistance on the path from the driver to a leaf. Capacitances on other branches are lumped as if they were at the branch point. This gives a conservative result because they are really partially shielded by their resistances. => TBD: see chapter 4 to know why
+6.3.2
+TBD: how to reduce the power?
+6.3.3
+the impact of crosstalk depends on the ratio of Cadj to the total capacitance. Note that the load capacitance is included in the total, so for short wires and large loads, the load capacitance dominates and crosstalk is unimportant. Conversely, crosstalk is very important for long wires.
+6.3.3.1
+Miller Coupling Factor MCF => section 4.4.6.6
+6.3.3.2
+if victim is floating, the noise remain indefinitely, if victim is driven, the larger the victim driver is, the sooner the victim recover from the crosstalk noise
+6.3.4
+TBD: section 13.2.3
+equaion 6.22 refers to equation 6.11 => TBD: define length for which inductance is relevant => wire flight time longer than either 1) rising time of the circuit or 2) RC delay of the wire
+low-resistance clock lines and wide busses far awayay from current return path are of concern
+power network => TBD section 13.3
+inductance tend to increase the progapgation delay and sharpen the edge rate => RLC instead of RC
+split wide wires into thinner section interpolated with VDD and GND serving as return path helps reduce inductance
+worst case in bus: adjacent coils are capacitively coupled, other coils are mutual inductive coupled => capacitance crosstalk in opposite direction postpones the victim, the decreasing mutual inductance in the same direction also postpones the victim
+return ratio => TBD
+6.3.5
+TBD: recall section 4.3.4
+6.4.1
+width, spacing, layer usage are configurable
+minimal pitch is prefered
+if wire capacitance is critical, increase spacing first
+if gate capacitance and wire resistance are critical, increase width
+power grid is usually distributed over multiple layers, and most curent handling is in upper layers with lowest resistance and extend donw to lower layer for easy connection to cells
+6.4.2
+wire RC delay increase with l^2 since both R and C increase proportionally with l
+deduction => TBD: recall section 4
+bidirectional busses and distributed tristate busses cannot use simple repeaters and hence are slower; this favors point-to-point unidirectional communications
+6.4.3
+capacitive crosstalk is proportional to the ratio of coupling capacitance to total capacitance => recall equation 6.20
+as aspect ratio become larger, capacitive crosstalk is more critical
+4 measures includes 1) increase spacing; 2) shield; 3) neighbor switch at different time; 4) crosstalk cancellation;
+TBD: what is track?
+Figure 6.28 give shielding topologies includes a mixture of 2) and 3)
+4) requires use of staggered repeater (an inverter repeater in aggressor whose input and output balance with each other), charge compensation (an inverter and a transistor between aggressor and victim), twisted differential signaling (expensive and widely used in memory => TBD: 12.2.3.3)
+6.4.4
+low-swing signaling may also require a twisted differential pair of wires to eliminate common-mode noise that could corrupt the small signal
+TBD: How it save power and how is realized => Section 10.3.8
+6.4.5
+repeaters are placed in series while regenerators are placed in parallel
+TBD: section 9.2.1.5
+6.5
+TBD: chapter 4
+6.6
+TBD: what is a flight time
+A discontinuity in the
+power grid can force return current to find a path far from the signal wire, greatly increasing the inductance, which increases delay and noise
+note that the microarchitecture becomes inherently linked to the floorplan because the design must allocate one or more cycles of pipeline delay for wires that cross the chip
+
+
+
+
+
+
+
