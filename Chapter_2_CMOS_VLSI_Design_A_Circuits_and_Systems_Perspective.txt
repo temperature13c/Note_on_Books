@@ -47,7 +47,7 @@ Figure 2.13 give a summary of capacitance of a MOS transistor: Cgs, Cgd, Cgb, Cs
 "velocity saturation": saturation current Isat did not ideally quadraticlly increase as Vds increase => scatter off the lattice more ofen as velocity increase => in high lateral Vds velocity is no longer proportional to electrical field => there is a miximum velocity vsat
 "mobility degradation": less Ids than expected => collision with oxide caused by high vertical Vgs
 "channel length modulation": ideally, Isat is no longer dependent on Vds. In reality, Isat increases somewhat as Vds increases => caused by high later Vds, depletion region increase to shorten the channel length
-"body effect": threshold increase => caused by rising potentail betwwen source and body
+"body effect": threshold increase => caused by rising potential betwwen source and body
 "drain-induced barrier lowering (DIBL)": increased Vds reduce Vt
 "short channel effect": increased channel lenght increase Vt
 "subtreshold conduction": when Vgs < Vt, Ids not totally 0
