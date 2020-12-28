@@ -1,0 +1,66 @@
+--										--
+--           CMOS VLSI Design           --
+--										--
+------------------------------------------
+
+#Chapter 9: Combinational Circuit Design
+
+Scratch:
+9.1
+equation 9.1 => circuit families attempt to reduce one of these terms
+nMOS is prefered since it deliver more current
+equal rising and falling delays is not a must => one of them can be favored if it is critical
+static CMOS has a relatively large logical effort => only 1 of 2 help with the pull up & pull down but the capacitance of both gates contribute to logical effort
+if only nMOS is to be driven, another mechanism must be provided to pull the output high (TBD: such as open drain?)
+TBD: SOI chips
+9.2.1
+think AND and OR in NAND and NOR since CMOS stages are inherently inverting
+compound gate has lower logical effort => prefered
+9.2.1.1
+DeMorgen's low => NAND = OR inverted inputs, NOR = AND inverted inputs
+bubble pushing => change ANDs and ORs to basic CMOS (NAND and NOR) by adding invert bubble
+9.2.1.2
+what is compound gate => combine of AND/OR functions in a single stage as Figure 9.3, note there is no wire in compound gate
+example 9.2 shows that compound gate is not always faster than combination of simple gate
+9.2.1.3
+gates such as AOI21 are inherently asymetric => different input see diffent capacitance
+gates such as NANDs and NORs are normally symmetric but logical effort and parastic delay are slightly differnt regarding different inputs.
+figure 9.6 shows the inner input switch last will minimize the delay since intermediate nodes is discharged in advance
+table 8.7 => TBD: not significant
+9.2.1.4
+figure 9.7 shows 1) in series network the non-critical (early) input is put to outter and its size is widen to have lower resistance. As a result, transistor for critical input can be kept small and so the logical effort is reduced; 2) in parallel network, the non-critical (early) input's transistor is shrunk to have small capacitance. As a result, the resistance is higher, producing a slower response;
+exmaple 9.3 => TBD: section 4.4.6.3 applying equation 4.28
+figure 9.8 gives a perfect symmetric NAND gate
+9.2.1.5
+the logical efforts for the rising (up) and falling (down) transitions are called gu and gd, respectively, and are the ratio of the input capacitance of the skewed gate to the input capacitance of an unskewed inverter with equal drive for that transition
+by downsizing the transitor on non-critical transition, the critical transition hold the same resistance while input capacitance is reduced => critical logical effort is reduce while non-critical logical effort is increased
+Hi-skew means output go high faster than go low
+TBD: work well with dynamic circuit in section 9.2.4
+9.2.1.6
+the ratio giving lowest average delay is the square root of the ratio that gives equal rise and fall delays => TBD: exercise 9.13 explains why
+9.2.1.7
+the low-threshold gates can be used sparingly to reduce the delay of critical paths
+skewed gates can use low-threshold devices on only the critical network of transistors.
+9.2.2
+in raitoed circuits, nMOS is for pulldown, static load is for pullup
+when nMOS off, static pull put to 1; when nMOS on, load shall be weak enough (large R?) to pull down to 0; => stronger (small R) cause faster rising edge but more static power when off
+figure 9.12: a) large size R required + static power consumption; b) have a VDD - Vt when rising to 1; c)Vgs = 0 and tansistor is weakly ON (TBD: small current, small Vds?)
+9.2.2.1
+in CMOS process, pseud-nMOS inverter can be built by wiring pMOS to GDD => see different types in figure 9.14
+figure 9.13 => TBD: need explanation
+figure 9.14 gives equivalent calculation: note the ratio between gu and gd is determined by the current, and then gd is calculated, gu is at last calculated using ratio
+pseud-nMOS is slower on average than static CMOS for NAND but works well for NOR
+the logical effort is independent of the number of inputs in wide NORs, so pseudo-nMOS is useful for fast wide NOR gates or NOR-based structures like ROMs and PLAs when power permits
+example 9.4 => TBD: for fall transition, 1 nMOS is discharged, thus the logical effort is unchanged nomatter how many inputs present, however, parsitic delay do changes
+TBD: biasing => lowering logwer logical effort
+9.2.2.2
+ganged NOR has better rising edge and lower power disspation
+9.2.3
+no applicable
+9.2.4
+ratioed circuits reduce the input capacitance by replacing the pMOS transistors connected to the inputs with a single resistive pullup
+
+
+
+
+
