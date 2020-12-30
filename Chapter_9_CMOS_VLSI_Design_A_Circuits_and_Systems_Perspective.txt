@@ -46,10 +46,10 @@ in raitoed circuits, nMOS is for pulldown, static load is for pullup
 when nMOS off, static pull put to 1; when nMOS on, load shall be weak enough (large R?) to pull down to 0; => stronger (small R) cause faster rising edge but more static power when off
 figure 9.12: a) large size R required + static power consumption; b) have a VDD - Vt when rising to 1; c)Vgs = 0 and tansistor is weakly ON (TBD: small current, small Vds?)
 9.2.2.1
-in CMOS process, pseud-nMOS inverter can be built by wiring pMOS to GDD => see different types in figure 9.14
+in CMOS process, pseudo-nMOS inverter can be built by wiring pMOS to GDD => see different types in figure 9.14
 figure 9.13 => TBD: need explanation
 figure 9.14 gives equivalent calculation: note the ratio between gu and gd is determined by the current, and then gd is calculated, gu is at last calculated using ratio
-pseud-nMOS is slower on average than static CMOS for NAND but works well for NOR
+pseudo-nMOS is slower on average than static CMOS for NAND but works well for NOR
 the logical effort is independent of the number of inputs in wide NORs, so pseudo-nMOS is useful for fast wide NOR gates or NOR-based structures like ROMs and PLAs when power permits
 example 9.4 => TBD: for fall transition, 1 nMOS is discharged, thus the logical effort is unchanged nomatter how many inputs present, however, parsitic delay do changes
 TBD: biasing => lowering logwer logical effort
@@ -59,6 +59,86 @@ ganged NOR has better rising edge and lower power disspation
 no applicable
 9.2.4
 ratioed circuits reduce the input capacitance by replacing the pMOS transistors connected to the inputs with a single resistive pullup
+2 modes in dynamic circuit: 1) precharge; 2) evaluation;
+advantages: 1) 0 static power dissipation; 2) lower input capacitance; 3) no contention during switching; => TBD: section 10.5
+footed and unfooted gates: 1) logical effort lower; 2) no contention during input transition ; 3) less velocity saturation due to transistor in series;
+monotonicity problem: input shall not go from High to Low during evaluation causing output floating => can be solved by domino logic
+why input staying Low is of no problem: during precharge, the output is unconditionally driven to high (capacitance charged), so during evaluation, discharge is ok for input rise or stay on (pulldown turn on), uncharged is ok for input stay off. Charge is impossible for input fall (pulldown turn off) since pullup is off and there is no source to charge output
+9.2.4.1
+domino logic insert CMOS invert between 2 dynamic circuits so that monotonic falling is transfered to monotonic rising
+figure 9.28: 1) single clock sourced to both dynamic circuits; 2) precharge occurs in parallel, while evaluation occurs sequentially;
+9.2.4.2 TBD
+9.2.4.3 TBD
+9.2.4.4 TBD
+9.2.4.5 TBD
+9.2.4.6 TBD
+9.2.4.7 TBD
+9.2.5
+pass-transistor circuits => input applied also to source/drain such as transmission gate
+CMOS is poorly suited to XOR since it requires 2 additional inverters => pass transistro is favored
+9.2.5.1
+figure 1.28 shows a multiplexer built from 2 transmission gates: nonrestoring, noise accumulated => sloved by adding 1 static CMOS inverter
+figure 9.48 gives an estimation for a unit transmission gate
+figure 4.49 is an alternate representation of CMOSTG >= see layout difference in figure 9.50
+figure 9.51 is a similar transformation betwwen transmission gatee to conventional static CMOS
+TBD: factors favor the static CMOS
+9.2.5.2 TBD
+9.2.5.3 TBD
+9.2.5.4 TBD
+9.3.1
+threshold drop: nMOS pass degraded 1 (VDD - Vt) while pMOS pass degraded 0 => using complementary transistors in parallel
+9.3.2
+in pseudo-nMOS ratio of strong nMOS and weak pMOS shall be ratioed that ouput is below VIL, even below Vt to eliminate static power => TBD: how to define weak and strong?
+TBD: in feedback circuits
+9.3.3
+leakage: subthreshold conduction, gate tunneling, reverse-biased diode leakage
+Vt low => Ids high => leakage increase
+DIBL lower Vt
+9.3.4
+charge sharing happens dynamic gate
+9.3.5
+power supply noise caused by: 1) IR drops; 2) di/dt noise => TBD
+9.3.6
+hot spot: nonuniform power dissipation
+9.3.7
+minority carrier injection: drain get minorty carriers outside rails (such as nearby transistor) and become forward-biased => solved by putting intermediate substrate or well  between nodes, guard rings in IO pads or simply keep nodes away
+9.3.8
+dynamic circuit floating output drop by the CMOS => avoided by putting dynamic circuit output closer to rail
+9.3.9 TBD: need feedback circuits
+9.3.10
+as process decrease, leakage will increase, threshold drops will become a greater fraction of the supply voltage, wire delay will become a greater portion of the cycle time, and coupling may get worse as aspect ratios of wires increase
+9.3.11 TBD when all previous TBD is done
+9.5
+using an insulator eliminate most of parasitic capacitance of the diffusion regions but also means the body is not tied to GND or VDD => body voltage modualtes Vt
+SOI catigorized: 1) PD: body thinner than channel depeletion width so body voltage is fixed; 2) FD: body thicker than channel depeletion width so body voltage varies and changes Vt via body effect;
+9.5.1
+body voltage charged via: 1) Ddb and Dsb; 2) ionization current Iii;
+body voltage stablized by discharging via: 1) source-to-body junction forward biased caused by Ddb; 2) gate or drain capacitive coupling cause source-to-body junction forward biased;
+9.5.2
+SOI advantages: 1) less parastic capacitance (TBD: why say not facing channel?); 2) sharper subthreshold slop for the potential lower Vt; 3) immune to latchup (TBD: eliminate parastic bipolar devices);
+9.5.3
+SOI disadvantages: 1) history effect: delay related to Vt, Vt related to body voltage, body voltage related to switching history; 2) pass-gate leakage: npn bipolar transistor turned on when source/drain are initially high and then pulled low (TBD: it happens also in CMOS and dynamic circuit); 3) self-heating;
+9.5.4 TBD
+9.6
+subthreshold leakge increases exponentially with Vgs
+in subtreshold regime, delay increase exponentially as VDD decreases
+if VDD decreases, switching energy decreases, but leakage increases => trade-off betwwen dynamic and static energy
+a supply close to 300-500 mV is the minimum energy point where the sum of dynamic and leakage energy is the smallest. Considering a low active factor or high temperature (leakage dominates) the actual supply can be somehow above. For further energy saving the acutal supply can be below
+9.6.1
+Transistor sizing offers at best a linear performance benefit, while supply voltage offers an exponential performance benefit
+general rules: use minimal width and increase supply voltage to which point the required performance is achieved
+9.6.2
+subthreshold circuits shaould use simple gates since: 1) for complex gates higher voltage is required to provide larger ON current through series transistors than parallel transistors; 2) stack effect degrades ON current and speed in series transistors;
+static structure with many parallel transistors, ratioed circuits and dynamic circuits do not work well in subtheshold
+9.7
+TBD: why it works to drive a pass-transistor difuusion inputs with voltage source rather than output stage of the previous gate
+9.8
+TBD
+
+
+
+
+
 
 
 
