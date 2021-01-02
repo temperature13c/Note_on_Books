@@ -1,0 +1,117 @@
+--										--
+--           CMOS VLSI Design           --
+--										--
+------------------------------------------
+
+#Chapter 10: Sequential Circuit Design
+
+Scratch:
+10.1
+sequencing for: 1) static circuits have no clock input => static storage (feedback) is employed to obtain the output value indefinitely; 2) dynamic circuits has clock input => dynamic storage is employed to periodic charging;
+sequencing overhead
+10.2.1
+3 methods of sequencing blocks of combinational logic in figure 10.2: 1) flip-flop: equal to a pair of back-back latches using clock and its complement; 2) 2-phase latches: 2 half-cycles + nonoverlap; 3) pulsed latches: keep only 1 phase latch;
+timing notation in table 10.1: 1) setup/hold: requirement of input from clock; contamination/propagation: requirement of output from input/clock;
+figure 10.4 (b): setup/hold check on sampling edge;
+figure 10.5 (c): setup/hold check on end of sampling edge;
+10.2.2
+flip-flop max-delay contraint: pd <= Tc - (pcq + setup) => equation 10.2
+2-phase latches max-delay contraint: pd = pd1 + pd2 <= Tc - 2pdq => equation 10.4 with 2 assumptions: 1) data appears in L1 transparent state; 2) data arrives L3 in less than 1 cycle (know why, and setup check in L3 is omitted in this case); 
+nonoverlap does NOT degrade 2-phase lathces performance (know why)
+pulsed latch with pw > setup: pd <= Tc - (pdq) => equation 10.6 (the setup check is hide since data will always latched somewhere in pulse)
+pulsed latch with pw <= setup: pd <= Tc + pw - (pcq + setup) => equation 10.6 with condition: data must set up before L1 pulse rises (can not be latched in pulse, so delay is aligned to clock)
+latch has setup check on the end of sampling => setup check appear at the last latch => setup/hold check inherently result from clock skew? => NO!
+10.2.3
+flip-flop min-delay contraint: cd >= hold - ccq => equation 10.7
+2-phase latches min-delay contraint: cd1 >= hold - (ccq1 + nonoverlap) & cd2 >= hold - (ccq2 + nonoverlap) => equation 10.8
+large nonoverlap eliminate hold failure
+pulsed latch : cd >= pw + hold - ccq => equation 10.9
+example 10.4: the critical path is the shortest path
+10.2.4
+flip-flop => hard edge
+latch => soft edge
+2-phase latches maximal borrow time = T/2 - (nonoverlap + setup) => equation 10.10
+pulse latches maximal borrow time = pw - setup => equation 10.11
+example 10.6: time borrow not aplicable to feedback loop
+2 benefits: 1) intentional time borrowing; 2) opportunistic time borrowing; => TBD
+10.2.5
+worst scenario for max delay in flip-flop => pd - skew
+worst scenario for min delay in flip-flop => cd + skew
+skew do NOT degrade 2-phase latches performance (pd no change) but cd + skew and tborrow - skew
+pulsed latches tolerate skew proportional to the pulse width providing pulse is wide enough (cd + skew & tborrow - skew) => equation 10.17 & 10.18
+pulsed latches is degraded if pulse is narrow
+summary: 1) systems with hard edges (e.g., flip-flops) subtract clock skew from the time available for useful computation;  2) systems with softer edges (e.g., latches) take advantage of the window of transparency to tolerate some clock skew without increasing the sequencing overhead;
+10.3.1
+TBD: leakage in 9.3.3 and noise in 9.3.9
+4 limitations of single pass transistor: 1) not rail-to-rail; 2) float to leakage; 3) noise on input; 4) state noise on output;
+figure 10.17 (b): CMOS transmisson gate fix 1)
+figure 10.17 (c): inverter on output fix 4)
+figure 10.17 (d): inverter on input lower logic effort
+figure 10.17 (e): feedback loop fix 2)
+figure 10.17 (g): standard cell
+figure 10.17 (h): in case that input noise is better controlled
+figure 10.17 (i): jamb latch, save clock load and 2 transistors but require careful design
+figure 10.17 (j): widely used in register file and FPGA
+figure 10.18 (a): clocked CMOS => (b) has charge sharing noise => TBD: section 9
+10.3.2
+figure 10.19: either the first or the last inverter can be removed to reduce delay at the expense of greater noise sensitivity on the unbuffered input or output => TBD: section 9
+clock is both complemented and buffered in flip-flop cell to sharpen edge rate => otherwise hold time of clocked flip-flop increase due to both latches at intermidiate voltage
+TBD: internal race condidtion between 2 latches in flip-flop
+figure 10.20 => TBD: section 9 
+use 2-phase clock with enough nonoverlapping clocks instead of clock and its complement relax min-delay issue but increase setup time and sequencing overhead => TBD
+10.3.3
+pulse latches: time borrowing; less energy consumption; increased hold time;
+clock chopper
+naffziger pg
+kozu pg
+partovi pl
+10.3.4
+synchronous and asynchronous reset: 1) synchronous: ANDing input with reset; 2) asynchronous: gating both data and feedback using NAND;
+set and reset => figure 10.24 and 10.25
+10.3.5
+2 ways to enable: 1) input multiplexer; 2) clock gating with AND;
+clock gating is prefered for 1) less clock energy consumption; 2) no delay on input; 3) AND shared by others;
+clock gating potential issue: 1) clock skew; 2) clock glitch;
+10.3.6
+reduce sequencing overhead by incorporating logic into latches
+10.3.7 TBD
+10.3.8 TBD
+10.3.9 TBD
+10.3.10 TBD
+10.3.11 TBD
+10.4 TBD
+10.5 TBD
+10.6
+data change outside aperture between setup and hold: expected output with a bounded propagation delay
+data change inside aperture between setup and hold: unexpected output with an unbounded propagation delay => metastability
+10.6.1
+TBD: small signal model of bistable element in metastability
+the latch propagation delay increases as A(0) approaches the metastable point and a(0) approaches 0
+feedback loop in a latch should have a high gain-bandwidth product to resolve from metastability quickly
+TBD: figure 10.45
+10.6.2
+synchronizer failure
+MTBF
+10.6.3
+handshaking of request and acknowledge: 1) 2-phase: edge-triggered; 2) 4-phase: level-sensitive;
+10.6.4
+error 1: bad synchronizer with: 1) dynamic latches without feedback; 2) heavily loaded loop;
+error 2: single bit with multiple synchronizers
+error 3: multibit synchronizer => can be solved by Grey code which change 1 bit each time
+10.6.5
+arbiter shall avoid lock up and catch on fire
+figure 10.51: the time required to make the decision can be unbounded, so the acknowledge signals must be synchronized before they are used in a clocked system
+10.6.6
+TBD: table 10.3 for different levels of synchrony
+10.7 TBD
+10.8 TBD
+
+
+ 
+
+
+
+
+
+
+
