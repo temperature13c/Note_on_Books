@@ -1,0 +1,43 @@
+--										--
+--           CMOS VLSI Design           --
+--										--
+------------------------------------------
+
+#Chapter 11: Datapath Subsystems
+
+Scratch:
+11.1
+chip functions consists: 1) datapath operators; 2) memory elements; 3) control structures; 4) special-purpose cells: I/O, power distribution, clock generation and distribution, analog and RF;
+data is arranged to flow in one direction while control signals are orthogonal to it => TBD
+11.2.1
+half adder: A, B, S, Cout => table 11.1
+full adder: A, B, C, S, Cout => table 11.2: generate G = A and B (Cout = true); propagate P = A XOR B (Cout = C); kill K = A NOR B (Cout = false);
+full adder use 32 transistors in figure 11.3
+full adder use 28 transistors in figure 11.4 by factor S to reuse Cout => mirror adder, symmetric, making the layout more uniform
+in mirror adder, S has greater delay then Cout since S reuse Cout => S is unimportant in carry-ripple adder (TBD: 11.2.2.1) as C to Cout is the critical path
+5 ways to optimize the critical path: 1) put C in inner inputs; 2) minimize sum logic related to C and Cout so that branching effort is small => TBD: chapter 4?; 3) asymmetric gate to reduce logical effort from C to Cout with an expense of effort of S; 4) TBD; 5) remove output inverters;
+figure 11.5 => TBD: adder layout
+figure 11.6 => TBD: transmission gate full adder
+figure 11.7 => TBD: CPL full adder
+11.2.2
+CPA: the carry into each bit can influence the carry into all subsequent bits
+11.2.2.1
+carry-ripple adder: since addition is self-dual function, reduce delay by omitting the inverters on the output and adding inverter on input or sum outputs, which is off the critical path in figure 11.11 (b)
+11.2.2.2
+note: 1) G: form a carry; P: pass a carry; K: eliminate a carry
+a group generates a carry if the upper (more significant) or the lower portion generates and the upper portion propagates that carry. The group propagates a carry if both the upper and lower portions propagate the carry
+3 steps of addition: 1) compute bitwise P & G (equation 11.5 & 11.6); 2) compute group G (equation 11.4); 3) compute S (equation 11.7); => figure 11.12: step 2 is of importance
+higher-valency group logic use fewer stages compared to valency-2
+11.2.2.3
+Use an AND-OR gate to replace majority gates
+11.2.3.4 TBD
+11.2.3.5
+carry-skip adder
+
+TBD
+
+11.3
+
+
+
+

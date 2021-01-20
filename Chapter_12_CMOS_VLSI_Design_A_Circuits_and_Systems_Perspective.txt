@@ -1,0 +1,138 @@
+--										--
+--           CMOS VLSI Design           --
+--										--
+------------------------------------------
+
+#Chapter 12: Array Subsystems
+
+Scratch:
+12.1
+categories of memory arrays in figure 12.1: 1) Random Access Memory; 2) Serial Access Memory; 3) Content Addressable Memory;
+SRAM & DRAM: 1) SRAM use feedback to maintain state, thus faster and less troublesome but require more area per bit; 2) DRAM use charge stored in floating capacitor to maintain state, thus need periodic refresh;
+ROM: MROM, PROM, EPROM, EEPROM
+Folding to keep memory array not too wide nor too tall
+12.2
+SRAM: 1) denser than FFs; 2) compatible with standard CMOS (TBD); 3) faster and easier than DRAM; => used as caches, register files, tables and scratchpad buffers (TBD:?)
+in figure 12.3 6 transistors forms a SRAM cell, about 1 order smaller than FF. The trade-off is a complex peripheral circuitry for read/write. When memory is large, this trade-off is good
+6 transistors in SRAM cell: 1) 4 for a pair of weak cross-coupled inverters for holding state (positive feedback); 2) 2 for a pair of access transistor to read or write; 
+key point is to be weak enough for write and strong enough for read: operation requires 2 phases
+12.2.1.1
+read stability: Q remain below threshold of P2/D2 inverter while being read in figure 12.4 => D1 must stronger than A1
+while read, bit and bit_b are floating high (precharged high in phase 1) so they can be driven by cell
+TBD: 10.4.6
+TBD: dual-rail domino gate
+12.2.1.2
+write stability: P2 must be weaker than A2 so Q_b can be pulled low enough
+note the either bitline or its complement is driven for write, the other can be floating or driven by write enable => TBD: unclear
+12.2.1.3
+size: nMOS > access MOS > pMOS
+2 stable states during hold and read, 1 stable state during write => use SNM to measure
+hold margin is unrelated to the hold time of FF
+read margin shall be smaller than hold margin
+improving write margin is in conflict with improving read margin
+example 12.1 has several caveats => TBD: chapter 7
+Vmin is required at 0.7-1.0V for SRAM due to static noise margin => voltage scalling impossible
+12.2.1.4 TBD
+use mirror layout to save diffusion capacitance
+wordline is run both metal1 and polysilicon => TBD: chapter 3
+traditional cell to thin cell
+12.2.1.5
+dual-port SRAM use 8 transistors: indipendent write and read
+6T structure with a trade-off between read/write margin limits Vmin => using 8T dual-port as single port has no such conflict
+12.2.3 0%
+12.2.4 10%
+register file are generally fast SRAMs with multiple read and write ports => for handling multiple simultaneous loads and stores
+12.2.5 0%
+12.2.6 0%
+12.2.7 0%
+12.3 TBD
+DRAM is substantially smaller than SRAM => a factor of 10-20, but also larger latency
+read operation: precharge bitline to Vdd/2, then share with capacitor. This means the read operation disturb the cel content. Therefore the statu must be rewritten after read
+write operation: drive bitline to high or low, then charge/discharge the cell
+equation 12.8 give the swing depending on Ccell / Ccell + Cbit => Cbit is much larger than Ccell => Ccell must be large enough for a detectable voltage swing
+figure 12.42 shows trench capactor to have enough capacitance
+12.3.1 90%: refer
+refer to 12.2.5 
+trade-off between density and performance: 1) larger subarray has better density efficiency due to amortized decoders and sense amplifiers; 2) smaller subarray has better per subarray has better performance with large swing due to smaller wordline and bitline capacitance;
+3 bitline architectures: open, folded and twisted => compomise between noise and area
+open architecture: each bit in all subarrays use a common sense amplifier => any noise affect one array will than the other will appear as differential noise at sense amplifier
+folded architecture: half the area, adjcent biline use a common sense amplifier => most noise appear together in biline pairs and has no impact on sense amplifier, but capacitive coupling from neighbors
+twists architecture: solve capacitive coupling by using a similar structure in figure 12.29(b)
+12.3.2 90%: circuits explain too simple
+column circuitry includes 1) sense amplifier; 2) write drivers; 3) column multiplexing; 4) bitline conditioning circuits;
+12.3.3 100%
+DRAM process is designed for low leakage using high Vt and thick oxides => hard to embed into logic process eDRAM
+12.4 100%
+ROM is about one transistor per bit, nonvolatile, pseudo-nMOS or dynamic => pseudo-nMOS used where DC power dissipation is acceptable
+by enabling wordline, the NOR gate which is driven by wordline pull down the whole bitline. Then the bit is inverted before output
+row decoder similar to thoese for RAMs, column decoders simpler than those for RAMs since single-ended sensing is used
+12.4.1 100%
+4 types of programmable ROMs: PROM, EPROM, EEPROM, Flash 
+PROM use fuses on an ordinary ROMS => one-time programmable
+EPROM, EEPROM, Flash  use charge stored on a floating gate between control gate and channel
+floating gate is good conductor but isolated bz 2 thin gate oxide. Applying high voltage to control gate cause Fowler-Nordheim tunneling to charge floating gate. So a negative charged floating gate increase Vt so the transistor is always OFF
+EPROM erased by ultraviolet light, EEPROM and Flash erased electrically
+EEPROM erased in bit while Flash erased in bulk => Flash is smaller and economical
+12.4.2 90%: NAND delay and NOR delay
+NOR ROM in figure 12.52: wordline active high, NOR gate in parallel, size limited by ground line
+NAND ROM in figure figure 12.58: wordline active low, NAND gate in series, size limited by contact, delay increase quadratically as transistor series increase (TBD: chapter 4) so multiple banks are built => attractive for Flash where density and cost are more important than access time
+12.4.3 80% => TBD
+block erase, page write
+charge on floating gate determines Vt: negative Vt = logic '1'; positive Vt = logic '0';
+string, wordline, bitline, string select line, ground select line in figure 12.60
+erase (wordlines = 0V, substrate = 20V): no electrons in floating gate = negative threshold = all 1s => slow, on the order of ms
+inhibit erase (wordlines = 20V, substrate = 20V): prevent erase => TBD 13.3.7 for charge pump providing high voltage
+program(1 wordline = 20 V, substrate = 0V, bitlines = 0V, gsl = OFF, ssl = ON): write 0 in page size (1 wordline), but can not restore 1 value => must erase before program
+inhibit program(1 wordline = 10 V, substrate = 0V, bitlines = 0V): insuffcient to cause tunneling
+page read(ssl = 3.3V, gsl = 3.3V, 1 wordline = 0V, other wordlines = 4.5V): bitline precharged high, then other wordlines turn ON. If Vt of the wordline is negative, the wordline is also ON => bitline discharged. Otherwise bitline unchanged
+multilevel Flash cells stores more than one bit per cell by programming Vt to different levels
+retention time: time for cell to hold the value => usually thousands or millions of years depending on leakage, usually 10 years specified by manufacturers
+endurance: number of times a cell can be erased and reprogrammed => typically 1 million, more multilevel as low as 5000 (less reliable)
+embedded Flash: usually for code storage of microcontroller, use NOR Flash instead of NAND (need faster accesss to individual words than a whole page: TBD: how to individual?)
+4GB = 32Gb = 2^35 bits =  2^16 bits/page * 2^8 pages/block * 2^11 blocks => 2 planes operates independently to double the throughput, 4GB need 2^32 byte-aligned address
+12.5 TBD
+SRAM is used to build serial access memories such as shift register, queues
+12.5.1 90% => TBD: 1-of-N hot registers how
+small shift register use FFs and large shift register use dual-port RAMs (circular buffer, read first entry & write last entry on reset) since FFs are rather big => use a pair of read/write counters or a pair of 1-to-N hot registers
+tapped delay line
+SIPO, PISO
+12.5.2 100%
+queues also use a pair of read/write counters or a pair of 1-to-N hot registers
+FIFO: circular buffer, read/write first entry on reset, write pointer catch read pointer = FULL, read catch write = EMPTY
+FIFO: only 1 pointer for both write and read
+12.6 70%
+CAM used for TLB supporting virtual memory => TBD: recall virtual memory
+bitline is the key, matchline of multiple CAM cells in the same word are tied together and pulled high. Any mismatch of bitline and its value stored in the cell pulls matchline down
+monotonicall rising wordline problem => TBD: recall 
+ternary CAM (TCAM) can store X, 0, 1 bits using 2 bits => good for network router which don't care subnet address
+12.7 30%: need previous chapter
+any logic function can be expressed as the OR (sum) of the ANDs (products) of true and complementary inputs => PLA consists of an AND plane to comuput minterms and an OR plane to compute outputs in figure 12.73
+NOR gates are particularly efficient in pseudo-nMOS and dynamic logic because they use only parallel, never series, transistors => TBD recall previous chapter
+ROM and PLA are similar in form => TBD
+pseudo-nMOS NOR gate PLA vs dynamic NOR gate PLA => TBD
+12.8 TBD
+principles: redundancy, ECC, radiation-hardened cell
+12.8.1 70%
+built-in self-test in 15.6.3 => blow electronic fuses to configure the replacements or run the self-test sequence when reset to detect cells that wear out
+possibility calculation TBD: chapter 7
+add dummy row and column => photolithography and etch problem more likely happens along the perimeter of large repetitive structure
+associative structure
+NAND Flash memories also tolerate high defect levels to minimize cell size => bad block management & wear-leveling
+12.8.2 50%
+ECC used for recovering from soft error => TBD: chapter 7.3.4, 11.7.2
+TBD: hamming distance
+12.8.3
+radiation hardening for reducing soft error susceptibility in aviation and space applications or high-reliability terrestrial applications
+dual-interlocked cell = DICE => TBD: 10.3.10
+A particle strike may disturb not only the node it hits, but also adjacent nodes due to the parasitic bipolar effect. This can flip bits in adjacent SRAM cells => TBD: parastic bipolar effect
+upsets in column is much worse than in row => rows have independent ECC => methods: 1) RS code; 2) column multiplexing;
+
+
+
+
+
+
+
+
+
+

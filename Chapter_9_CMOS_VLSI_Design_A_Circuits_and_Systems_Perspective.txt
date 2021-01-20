@@ -45,6 +45,7 @@ skewed gates can use low-threshold devices on only the critical network of trans
 in raitoed circuits, nMOS is for pulldown, static load is for pullup
 when nMOS off, static pull put to 1; when nMOS on, load shall be weak enough (large R?) to pull down to 0; => stronger (small R) cause faster rising edge but more static power when off
 figure 9.12: a) large size R required + static power consumption; b) have a VDD - Vt when rising to 1; c)Vgs = 0 and tansistor is weakly ON (TBD: small current, small Vds?)
+replace resistor with nMOS tied to VGG as a static load
 9.2.2.1
 in CMOS process, pseudo-nMOS inverter can be built by wiring pMOS to GDD => see different types in figure 9.14
 figure 9.13 => TBD: need explanation
